@@ -26,10 +26,26 @@
 
 
 \begin{frame}
+  \frametitle{Introduction}
+
+  \begin{columns}
+
+    \column{0.5\textwidth}
+    \includegraphics{img/speaker-headshot.png}
+
+    \column{0.5\textwidth}
+    \textbf{Adrian Petrescu} \\
+    Chief Engineer at Rubikloud
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Logistics}
   
   \begin{itemize}
     \item GitHub Repository: \href{https://github.com/apetresc/api}{https://github.com/apetresc/api}
+    \item Notebook: \href{https://rac.rotman.utoronto.ca/jupyter/user/ut_apetrescu/lab/tree/Day1.ipynb}{RAC Link}
   \end{itemize}
 \end{frame}
 
@@ -81,23 +97,14 @@
   \\
   {
     \color{olive}
-    \texttt{Host: news.ycombinator.com} \\
+    \texttt{Host: https://pokeapi.co/api/v2/evolution-chain/1/} \\
     \texttt{Connection: keep-alive} \\
-    %\texttt{Content-Type: application/json}
-    \texttt{Accept: */*}
-  }
-  \\
-  \pause
-  \bigskip
-  \\
-  {
-    \color{violet}
-    \texttt{\{ "a": "b" \}}
+    \texttt{Accept: application/json}
   }
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile=singleslide]
   \frametitle{Anatomy of a Response}
   \framesubtitle{Polo}
 
@@ -105,13 +112,22 @@
   {
     \color{olive}
     \texttt{Server: nginx} \\
-    \texttt{Content-Type: text/html; charset=utf-8} \\
-    \texttt{...} \\
+    \texttt{Content-Type: application/json} \\
+    \texttt{Content-Length: 3238} \\
+    \texttt{[...]} \\
   } \bigskip
 
   {
     \color{violet}
-    \texttt{<html> <head> ...}
+    \begin{verbatim}
+{
+  "id": 1,
+  "chain": {
+    "species": "bulbasaur",
+    [...]
+  }
+}
+    \end{verbatim}
   }
 \end{frame}
 
@@ -183,6 +199,15 @@
 
 
 \begin{frame}
+  \frametitle{CORS}
+  \framesubtitle{Cross-Origin Resource Sharing}
+  \begin{center}
+    \includegraphics[width=320]{img/cors-diagram.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Authentication}
   \begin{itemize}
     \item Unauthenticated
@@ -212,15 +237,22 @@
 \begin{frame}
   \frametitle{OAuth}
   \begin{center}
-    \includegraphics[width=320]{oauth-seq.png}
+    \includegraphics[width=320]{img/oauth-seq.png}
   \end{center}
+\end{frame}
+
+
+\begin{frame}
+  Luckily, this whole dance can be automated away with the right library!
+  \begin{block}{Example}
+  \end{block}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Demo - Yelp}
   \begin{center}
-    \includegraphics[width=320]{yelp-logo.png}
+    \includegraphics[width=240]{img/yelp-logo.png}
   \end{center}
 \end{frame}
 
@@ -228,7 +260,7 @@
 \begin{frame}
   \frametitle{Demo - GitHub}
   \begin{center}
-    \includegraphics[width=320]{github-logo.png}
+    \includegraphics[width=320]{img/github-logo.png}
   \end{center}
 \end{frame}
 
