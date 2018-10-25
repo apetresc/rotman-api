@@ -11,7 +11,7 @@
 
 \setbeamertemplate{navigation symbols}{}
 % Uncomment line below for notes
-%\setbeameroption{show notes on second screen}
+% \setbeameroption{show notes on second screen}
 
 \setbeamertemplate{note page}{\insertnote}
 
@@ -90,14 +90,14 @@
 \begin{frame}
   \frametitle{Anatomy of a Request}
   \framesubtitle{Marco}
-  \texttt{{\color{red}GET} {\color{darkgreen}/} {\color{blue}HTTP/1.1}}
+  \texttt{{\color{red}GET} {\color{darkgreen}/api/v2/evolution-chain/1/} {\color{blue}HTTP/1.1}}
   \pause
   \\
   \bigskip
   \\
   {
     \color{olive}
-    \texttt{Host: https://pokeapi.co/api/v2/evolution-chain/1/} \\
+    \texttt{Host: pokeapi.co} \\
     \texttt{Connection: keep-alive} \\
     \texttt{Accept: application/json}
   }
@@ -199,22 +199,37 @@
 
 
 \begin{frame}
-  \frametitle{CORS}
-  \framesubtitle{Cross-Origin Resource Sharing}
-  \begin{center}
-    \includegraphics[width=320]{img/cors-diagram.png}
-  \end{center}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Authentication}
+  \frametitle{Authentication and Authorization}
   \begin{itemize}
     \item Unauthenticated
+    \item HTTP Basic Auth
     \item API Access Tokens
     \item OAuth 1/2
   \end{itemize}
 \end{frame}
+\note{Hello world}
+
+
+\begin{frame}[fragile=singleslide]
+  \frametitle{HTTP Basic Auth}
+  \begin{block}{Example}
+    \begin{Verbatim}[commandchars=\\\{\}]
+      GET /user HTTP/1.1
+      
+      Host: api.github.com
+      \textcolor{red}{Authorization: Basic YXBldHJlc2M6MFk4aWJYdU7wvabj}
+    \end{Verbatim}
+  \end{block}
+
+    \begin{itemize}
+      \item Extremely easy to implement
+      \item This does authentication, not authorization, in spite of the header
+      \item Not secure - the string there is just a base64 encoding, not any sort of encryption
+    \end{itemize}
+\end{frame}
+\note{\begin{itemize}
+  \item Demo \texttt{curl -v -u apetresc https://api.github.com/user} with interacitve password prompt and \texttt{X-GitHub-OTP} header
+\end{itemize}}
 
 
 \begin{frame}[fragile=singleslide]
@@ -228,7 +243,7 @@
   \end{block}
   
   \begin{itemize}
-    \item Extremely simple to implement
+    \item Easy to use for clients
     \item Only works for server-side, single-user applications
   \end{itemize}
 \end{frame}
@@ -240,12 +255,26 @@
     \includegraphics[width=320]{img/oauth-seq.png}
   \end{center}
 \end{frame}
+\note{\begin{itemize}
+  \item Even if you personally only care about accessing APIs as a single user, many APIs are not interested in enabling
+    your case, but they \textit{do} support developers building products on their APIs. So you have to "pretend" to be
+    one of those and go through the OAuth dance as if you were your own user.
+\end{itemize}}
 
 
 \begin{frame}
   Luckily, this whole dance can be automated away with the right library!
   \begin{block}{Example}
   \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{CORS}
+  \framesubtitle{Cross-Origin Resource Sharing}
+  \begin{center}
+    \includegraphics[width=320]{img/cors-diagram.png}
+  \end{center}
 \end{frame}
 
 
