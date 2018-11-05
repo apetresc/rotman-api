@@ -38,6 +38,10 @@
     Chief Engineer at Rubikloud
   \end{columns}
 \end{frame}
+\note{\begin{itemize}
+  \item Talk about Twitsprout
+  \item Talk about 
+\end{itemize}}
 
 \begin{frame}
   \frametitle{My Excuse}
@@ -84,12 +88,27 @@
 
 
 \begin{frame}
+  \frametitle{Web Architecture}
+  \framesubtitle{In Its Simplest Possible Form}
+  \includegraphics[width=320]{img/web-architecture-1.png}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Web Architecture}
+  \framesubtitle{In Its Modern Form}
+  \includegraphics[width=320]{img/web-architecture-2.png}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{HTTP}
   \framesubtitle{Hyertext Transfer Protocol}
   \begin{itemize}
     \item The language of the web
       \note[item]{\textit{Not} the language of the internet, necessarily. There are many other protocols}
     \item Stateless
+      \note[item]{Helps with load balancing}
   \end{itemize}
 \end{frame}
 
@@ -202,6 +221,18 @@
     \item \texttt{501 Not Implemented}
     \item \texttt{503 Service Unavailable}
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Some Important Headers}
+  \begin{itemize}
+    \item \texttt{Set-Cookie} / \texttt{Cookie}
+    \item \texttt{User-Agent}
+    \item \texttt{Expires} / \texttt{Cache-Control}
+  \end{itemize}
+
+  A much more comprehensive listing can be found on the \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers}{Mozilla Developer Network}.
 \end{frame}
 
 
