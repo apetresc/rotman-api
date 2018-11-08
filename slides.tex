@@ -40,7 +40,7 @@
 \end{frame}
 \note{\begin{itemize}
   \item Talk about Twitsprout
-  \item Talk about 
+  \item Talk about Maluuba's use of Google, Nuance, Platform APIs
 \end{itemize}}
 
 \begin{frame}
@@ -64,26 +64,42 @@
 \begin{frame}
   \frametitle{Schedule}
   
-  \alert{Day 1 (Today)}
+  \alert{Part 1 (Today)}
   \begin{itemize}
     \item Introduction and motivation
     \item HTTP, REST, and the languages of the web
     \item Authentication schemes
+    \item Lots and lots of practical examples
   \end{itemize}
 
-  Day 2 (November 1st)
+  Part 2
   \begin{itemize}
     \item Scraping unstructured data from the web
     \item Parsing 
     \item Automated spiders
   \end{itemize}
 
-  Day 3 (November 8th)
+  Part 3
   \begin{itemize}
     \item The server-side of APIs
     \item Deploying to the Cloud
     \item Project Description
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{What is an API?}
+  \begin{columns}
+    \column{0.33\textwidth}
+    \includegraphics[width=110]{img/opengl.png}
+    \pause
+    \column{0.33\textwidth}
+    \includegraphics[width=110]{img/ios.jpg}
+    \pause
+    \column{0.33\textwidth}
+    \includegraphics[width=110]{img/twitter.png}
+  \end{columns}
 \end{frame}
 
 
@@ -128,6 +144,9 @@
     \texttt{Accept: application/json}
   }
 \end{frame}
+\note{\begin{itemize}
+  \item Talk about REST briefly
+\end{itemize}}
 
 
 \begin{frame}[fragile=singleslide]
@@ -236,6 +255,74 @@
 \end{frame}
 
 
+\begin{frame}[fragile=singleslide]
+  \frametitle{JSON}
+  \framesubtitle{JavaScript Object Notation}
+  \begin{Verbatim}
+  {
+    "a": true,
+    "b": {
+      "c": 1,
+      "d": [
+        {"x": 1},
+        {"y": 2}
+      ]
+    }
+  }
+	\end{Verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]
+	\frametitle{XML}
+	\framesubtitle{eXtensible Markup Language}
+	\begin{Verbatim}
+ <card xmlns="http://businesscard.org/schema.xml">
+   <name>John Doe</name>
+   <title>CEO, Widget Inc.</title>
+   <email>john.doe@widget.com</email>
+   <phone>(202) 456-1414</phone>
+   <logo url="widget.gif"/>
+ </card>
+	\end{Verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]
+  \frametitle{XSD}
+  {\tiny
+  \begin{Verbatim}
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:b="http://businesscard.org"
+        targetNamespace="http://businesscard.org">
+
+  <element name="card" type="b:card_type"/>
+  <element name="name" type="string"/>
+  <element name="title" type="string"/>
+  <element name="email" type="string"/>
+  <element name="phone" type="string"/>
+  <element name="logo" type="b:logo_type"/>
+
+  <complexType name="card_type">
+    <sequence>
+      <element ref="b:name"/>
+      <element ref="b:title"/>
+      <element ref="b:email"/>
+      <element ref="b:phone" minOccurs="0"/>
+      <element ref="b:logo" minOccurs="0"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="logo_type">
+    <attribute name="url" type="anyURI"/>
+  </complexType>
+
+</schema>
+  \end{Verbatim}
+}
+\end{frame}
+
+
 \begin{frame}
   \frametitle{Authentication and Authorization}
   \begin{itemize}
@@ -300,9 +387,43 @@
 \end{itemize}}
 
 
-\begin{frame}
+\begin{frame}[fragile=singleslide]
   Luckily, this whole dance can be automated away with the right library!
-  \begin{block}{Example}
+  \begin{block}{Request a token}
+    {\tiny
+    \begin{Verbatim}
+from requests_oauth2.services import GoogleClient
+google_auth = GoogleClient(
+      client_id="your-google-client-id",
+      client_secret="super-secret",
+      redirect_uri="http://localhost:5000/google/oauth2callback",
+      )
+
+    authorization_url = google_auth.authorize_url(
+        scope=["email"],
+        response_type="code",
+        )
+    \end{Verbatim}
+    }
+  \end{block}
+  \begin{block}{Authorize with the token}
+    {\tiny
+    \begin{Verbatim}
+code = get_request_parameter("code")
+data = google_auth.get_token(
+      code=code,
+      grant_type="authorization_code",
+      )
+
+session["access_token"] = data["access_token"]
+
+with requests.Session() as s:
+    s.auth = OAuth2BearerToken(access_token)
+    r = s.get("https://www.googleapis.com/plus/v1/people/me")
+    r.raise_for_status()
+    data = r.json()
+\end{Verbatim}
+    }
   \end{block}
 \end{frame}
 
@@ -317,18 +438,19 @@
 
 
 \begin{frame}
+  \frametitle{Demo - GitHub}
+  \begin{center}
+    \includegraphics[width=320]{img/github-logo.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Demo - Yelp}
   \begin{center}
     \includegraphics[width=240]{img/yelp-logo.png}
   \end{center}
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Demo - GitHub}
-  \begin{center}
-    \includegraphics[width=320]{img/github-logo.png}
-  \end{center}
-\end{frame}
 
 \end{document}
