@@ -11,7 +11,7 @@
 
 \setbeamertemplate{navigation symbols}{}
 % Uncomment line below for notes
-% \setbeameroption{show notes on second screen}
+\setbeameroption{show notes on second screen}
 
 \setbeamertemplate{note page}{\insertnote}
 
@@ -123,6 +123,7 @@
   \begin{itemize}
     \item The language of the web
       \note[item]{\textit{Not} the language of the internet, necessarily. There are many other protocols}
+    \item Transactional
     \item Stateless
       \note[item]{Helps with load balancing}
   \end{itemize}
@@ -132,7 +133,7 @@
 \begin{frame}
   \frametitle{Anatomy of a Request}
   \framesubtitle{Marco}
-  \texttt{{\color{red}GET} {\color{darkgreen}/api/v2/evolution-chain/1/} {\color{blue}HTTP/1.1}}
+  \texttt{{\color{red}GET} {\color{darkgreen}/api/v2/evolution-chain/1}{\color{purple}?format=json} {\color{blue}HTTP/1.1}}
   \pause
   \\
   \bigskip
@@ -271,6 +272,9 @@
   }
 	\end{Verbatim}
 \end{frame}
+\note{\begin{itemize}
+  \item Talk about the history of JavaScript, ECMAScript, naming, etc
+\end{itemize}}
 
 
 \begin{frame}[fragile=singleslide]
