@@ -1,8 +1,8 @@
-\documentclass{beamer}
+\documentclass[dvipsnames]{beamer}
 
 \usepackage[utf8]{inputenc}
+%\usepackage[dvipsnames]{xcolor}
 \usepackage{pgfpages}
-\usepackage[dvipsnames]{xcolor}
 \usepackage{fancyvrb}
 \usetheme{Madrid}
 
@@ -11,7 +11,7 @@
 
 \setbeamertemplate{navigation symbols}{}
 % Uncomment line below for notes
-\setbeameroption{show notes on second screen}
+% \setbeameroption{show notes on second screen}
 
 \setbeamertemplate{note page}{\insertnote}
 
@@ -46,7 +46,7 @@
 \begin{frame}
   \frametitle{My Excuse}
   \begin{center}
-    \includegraphics[width=320]{img/calvin.jpg}
+    \includegraphics[width=320pt]{img/calvin.jpg}
   \end{center}
 \end{frame}
 
@@ -92,13 +92,13 @@
   \frametitle{What is an API?}
   \begin{columns}
     \column{0.33\textwidth}
-    \includegraphics[width=110]{img/opengl.png}
+    \includegraphics[width=110pt]{img/opengl.png}
     \pause
     \column{0.33\textwidth}
-    \includegraphics[width=110]{img/ios.jpg}
+    \includegraphics[width=110pt]{img/ios.jpg}
     \pause
     \column{0.33\textwidth}
-    \includegraphics[width=110]{img/twitter.png}
+    \includegraphics[width=110pt]{img/twitter.png}
   \end{columns}
 \end{frame}
 
@@ -106,14 +106,14 @@
 \begin{frame}
   \frametitle{Web Architecture}
   \framesubtitle{In Its Simplest Possible Form}
-  \includegraphics[width=320]{img/web-architecture-1.png}
+  \includegraphics[width=320pt]{img/web-architecture-1.png}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Web Architecture}
   \framesubtitle{In Its Modern Form}
-  \includegraphics[width=320]{img/web-architecture-2.png}
+  \includegraphics[width=320pt]{img/web-architecture-2.png}
 \end{frame}
 
 
@@ -133,16 +133,14 @@
 \begin{frame}
   \frametitle{Anatomy of a Request}
   \framesubtitle{Marco}
-  \texttt{{\color{red}GET} {\color{darkgreen}/api/v2/evolution-chain/1}{\color{purple}?format=json} {\color{blue}HTTP/1.1}}
+  \texttt{{\color{red}GET} {\color{OliveGreen}/api/v2/evolution-chain/1}{\color{purple}?format=json} {\color{blue}HTTP/1.1}} \\
   \pause
-  \\
   \bigskip
-  \\
   {
     \color{olive}
     \texttt{Host: pokeapi.co} \\
     \texttt{Connection: keep-alive} \\
-    \texttt{Accept: application/json}
+    \texttt{Accept: application/json} \\
   }
 \end{frame}
 \note{\begin{itemize}
@@ -381,7 +379,7 @@
 \begin{frame}
   \frametitle{OAuth}
   \begin{center}
-    \includegraphics[width=320]{img/oauth-seq.png}
+    \includegraphics[width=320pt]{img/oauth-seq.png}
   \end{center}
 \end{frame}
 \note{\begin{itemize}
@@ -436,7 +434,7 @@ with requests.Session() as s:
   \frametitle{CORS}
   \framesubtitle{Cross-Origin Resource Sharing}
   \begin{center}
-    \includegraphics[width=320]{img/cors-diagram.png}
+    \includegraphics[width=320pt]{img/cors-diagram.png}
   \end{center}
 \end{frame}
 
@@ -444,7 +442,7 @@ with requests.Session() as s:
 \begin{frame}
   \frametitle{Demo - GitHub}
   \begin{center}
-    \includegraphics[width=320]{img/github-logo.png}
+    \includegraphics[width=320pt]{img/github-logo.png}
   \end{center}
 \end{frame}
 
@@ -452,7 +450,7 @@ with requests.Session() as s:
 \begin{frame}
   \frametitle{Demo - Yelp}
   \begin{center}
-    \includegraphics[width=240]{img/yelp-logo.png}
+    \includegraphics[width=240pt]{img/yelp-logo.png}
   \end{center}
 \end{frame}
 
