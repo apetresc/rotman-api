@@ -254,5 +254,3 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
-# pdf outputs
-*.pdf
