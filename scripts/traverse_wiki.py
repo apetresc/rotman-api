@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import time
-import urlparse
+from urllib.parse import urljoin
 
 
 DOMAIN = "https://en.wikipedia.org/"
@@ -22,10 +22,10 @@ def bft(root):
 def get_links(url):
   html = requests.get(url).content
   soup = BeautifulSoup(html, 'html.parser')
-  return [urlparse.urljoin(DOMAIN, a["href"]) for a in soup.find(id="content").find_all('a') if a.get("href") and a["href"].startswith('/')]
+  return [urljoin(url, a["href"]) for a in soup.select('#content a') if a.get("href", "").startswith('/')]
 
 
-ROOT_NODE = "https://en.wikipedia.org/wiki/Star_Wars"
+ROOT_NODE = "https://en.wikipedia.org/wiki/Rotman_School_of_Management"
 
 
 if __name__ == "__main__":
